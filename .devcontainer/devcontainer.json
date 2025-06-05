@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/main/containers/dotnet
+{
+    "name": ".NET 10 Preview Codespace",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "ms-dotnettools.csharp",
+                "ms-vscode.powershell"
+            ]
+        }
+    },
+    "postCreateCommand": "dotnet --version"
+}
