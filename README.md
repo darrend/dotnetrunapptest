@@ -1,3 +1,6 @@
+See https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/
+
+
 # dotnetrappruntetst
 trying to see if i can setup a codespace with .net 10 preview 
 
