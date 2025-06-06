@@ -1,8 +1,10 @@
 See https://devblogs.microsoft.com/dotnet/announcing-dotnet-run-app/
 
 
-# dotnetrappruntetst
+# dotnetrappruntest
 trying to see if i can setup a codespace with .net 10 preview 
+
+Fire up a codespace and after it cooks for a bit give it a go in a terminal with `dotnet run hello.cs` or `dotnet run app.cs`
 
 # todo
  install the C# Dev Kit and then follow these instructions to update the C# extension for file-based apps support:
