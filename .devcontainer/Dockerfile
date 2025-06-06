@@ -3,11 +3,18 @@
 # Use Ubuntu as the base image
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
-# Install .NET 10 Preview SDK
-RUN wget https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.100-preview.4.25258.110/dotnet-sdk-10.0.100-preview.4.25258.110-linux-x64.tar.gz \
+# Install .NET 10 Preview SDK for the detected architecture
+ARG DOTNET_SDK_VERSION=10.0.100-preview.4.25258.110
+RUN ARCH=$(dpkg --print-architecture) \
+    && if [ "$ARCH" = "arm64" ]; then \
+        DOTNET_PKG=dotnet-sdk-${DOTNET_SDK_VERSION}-linux-arm64.tar.gz; \
+      else \
+        DOTNET_PKG=dotnet-sdk-${DOTNET_SDK_VERSION}-linux-x64.tar.gz; \
+      fi \
+    && wget https://builds.dotnet.microsoft.com/dotnet/Sdk/${DOTNET_SDK_VERSION}/$DOTNET_PKG \
     && mkdir -p /usr/share/dotnet \
-    && tar -zxf dotnet-sdk-10.0.100-preview.4.25258.110-linux-x64.tar.gz -C /usr/share/dotnet \
-    && rm dotnet-sdk-10.0.100-preview.4.25258.110-linux-x64.tar.gz \
+    && tar -zxf $DOTNET_PKG -C /usr/share/dotnet \
+    && rm $DOTNET_PKG \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # Set up environment variables
